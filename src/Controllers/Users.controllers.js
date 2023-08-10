@@ -26,6 +26,10 @@ export const userLogin = async(user) =>{
     return { data: "Email or Username incorrect" }; 
   };
 
+  if(findUserByEmail && findUserByEmail.deleted || findUserByUsername && findUserByUsername.deleted){
+    return {data: "Sorry, your account has been disabled. Please contact support!"}
+  }
+
   if(findUserByEmail || findUserByUsername){
 
     if(findUserByEmail?.password === password || findUserByUsername?.password === password){
@@ -67,6 +71,8 @@ export const googleAuth = async(newUser) =>{
 
   if(findUser && !findUser.googleUser){
     return {data: "We already have an account registered with that email"}
+  }else if(findUser && findUser.deleted){
+    return {data: "Sorry, your account has been disabled. Please contact support!"}
   }else if(findUser && findUser.googleUser){
     return {data: findUser};
   }else if(!findUser){
