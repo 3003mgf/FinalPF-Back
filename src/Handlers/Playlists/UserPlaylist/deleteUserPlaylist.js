@@ -3,12 +3,12 @@ import { deleteUserPlaylist } from "../../../Controllers/Playlists.controllers.j
 
 export const deleteUserPlaylistHandler = async(req, res)=>{
   try{
-    const {data} = await deleteUserPlaylist(req.params.playlistId);
+    const response = await deleteUserPlaylist(req.params.playlistId);
 
-    if(data === "Playlist not found"){
-      res.status(500).json(data);
+    if(response.data === "Playlist not found"){
+      res.status(500).json(response);
     }else{
-      res.status(200).json(data);
+      res.status(200).json(response);
     }
   }catch(error){
     console.log(error);

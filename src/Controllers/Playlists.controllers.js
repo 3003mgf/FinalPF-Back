@@ -10,7 +10,7 @@ export const getAllPlaylists = async() =>{
 export const deleteUserPlaylist = async(playlistId) =>{
   const findPlaylist = await Playlists.findOne({
     where: {
-      id: playlistId
+      playlistId: playlistId
     }
   });
 
@@ -21,7 +21,7 @@ export const deleteUserPlaylist = async(playlistId) =>{
 
   findPlaylist.destroy();
 
-  return {data: "User playlist deleted"};
+  return {msg: "User playlist deleted", data: findPlaylist};
 };
 
 
@@ -35,7 +35,7 @@ export const createUserPlaylist = async(playlist) =>{
   });
 
   if(validatePlaylistName){
-    return {data: "User playlist already exists"};
+    return {msg: "User playlist already exists"};
   };
 
   const createPlaylist = await Playlists.create(playlist);
@@ -59,7 +59,11 @@ export const updateUserPlaylist = async(playlist) =>{
   if(findPlaylist.name === playlist.name){
     return {data: "You already have a playlist with that name"};
   }else{
-    findPlaylist.update(playlist);
+
+    await findPlaylist.update({
+      tracks: playlist.tracks
+    });
+    await findPlaylist.save();
 
     return {data: "User playlist updated"};
   };

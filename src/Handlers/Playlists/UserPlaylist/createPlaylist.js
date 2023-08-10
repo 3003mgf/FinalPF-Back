@@ -5,7 +5,7 @@ const createUserPlaylistHandler = async (req, res) => {
   try{
     const response = await createUserPlaylist(req.body);
 
-    if(response === "User playlist already exists"){
+    if(response.msg === "User playlist already exists"){
       res.status(500).json(response);
     }else{
       res.status(200).json(response);
