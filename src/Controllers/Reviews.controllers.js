@@ -18,15 +18,17 @@ export const getReviews = async () => {
   return data;
 };
 
-export const postReviews = async (comment, rating, UserId) => {
- /*  if( 
-    //typeof(comment) !== 'string' || comment.length < 1 ||
-    //typeof(rating) !== 'number' || rating.length < 1 ||
-   // typeof(userId) !== 'string' || comment.length < 1 
-    ) return('Campos obligatorios sin completar') */
-  const data = await Reviews.create({ comment, rating, UserId })
-  if(!data) return "No se guardaron los datos"
-  return data
+export const postReviews = async (data) => {
+ 
+  const createReview = await Reviews.create({
+    rating: data.rating,
+    comment: data.comment,
+    UserId: data.UserId
+  })
+
+  if(!createReview) return "Error creating the review"
+
+  return {msg:"Review created", data: {...createReview.dataValues, User: data.User}}
 }
 
 export const putReviews = async (id, comment, rating) => {

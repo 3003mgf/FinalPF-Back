@@ -7,6 +7,10 @@ const Reviews = sequelize.define('Reviews', {
       primaryKey: true,
       autoIncrement: true
     },
+    UserId:{
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     comment:{
       type: DataTypes.STRING,
       allowNull: true,
