@@ -21,7 +21,7 @@ export const deleteUserPlaylist = async(playlistId) =>{
 
   findPlaylist.destroy();
 
-  return {msg: "User playlist deleted", data: findPlaylist};
+  return {msg: "User playlist deleted", id: findPlaylist.playlistId};
 };
 
 
