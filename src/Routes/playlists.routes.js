@@ -8,6 +8,7 @@ import { playlistsToDb } from "../Util/initFetch.js";
 import { deleteUserPlaylistHandler } from "../Handlers/Playlists/UserPlaylist/deleteUserPlaylist.js";
 import { updateUserPlaylistHandler } from "../Handlers/Playlists/UserPlaylist/updatePlaylist.js";
 import createUserPlaylistHandler from "../Handlers/Playlists/UserPlaylist/createPlaylist.js";
+import { togglePlaylistHanlder } from "../Handlers/Playlists/UserPlaylist/togglePlaylist.js";
 
 export const playlistsRouter = Router()
 
@@ -21,6 +22,7 @@ playlistsRouter.delete('/:id', deletePlaylistsHandler)
 playlistsRouter.delete('/user/:playlistId', deleteUserPlaylistHandler)
 playlistsRouter.put('/user/update', updateUserPlaylistHandler)
 playlistsRouter.post('/user/create', createUserPlaylistHandler)
+playlistsRouter.put('/user/toggle', togglePlaylistHanlder)
 
 
 

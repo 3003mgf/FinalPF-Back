@@ -68,3 +68,22 @@ export const updateUserPlaylist = async(playlist) =>{
     return {data: "User playlist updated"};
   };
 };
+
+
+export const toggleUserPlaylist = async(data) =>{
+  const { id, tracks } = data;
+
+  const findPlaylist = await Playlists.findOne({
+    where: {
+      id: id
+    }
+  });
+
+  await findPlaylist.update({
+    tracks: tracks
+  });
+
+  await findPlaylist.save();
+
+  return {data: "Playlist toggle success"};
+};
