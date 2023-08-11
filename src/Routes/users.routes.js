@@ -22,7 +22,7 @@ usersRouter.put("/cart", putUserCartHandler);
 usersRouter.get('/:id',getUsersByIdHandler)
 usersRouter.put('/', putUsersHandler);
 usersRouter.delete('/:id', deleteUsersHandler);
-usersRouter.delete('/destroy/:id', destroyUserHandler);
+usersRouter.delete('/destroy/:userId', destroyUserHandler);
 usersRouter.put('/member', makeMemberHandler);
 usersRouter.get('/', getUsersHandler)
 usersRouter.put('/forgot-password', forgotPHandler)
