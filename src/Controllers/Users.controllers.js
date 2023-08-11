@@ -320,3 +320,21 @@ export const forgotPassword = async(email) =>{
 
     return {data:"ForgotP sent"};
 };
+
+
+export const destroyUser = async(userId) =>{
+  const findUser = await Users.findOne({
+    where: {
+      id: userId
+    }
+  });
+
+  if(!findUser){
+    return {data: "No user found"};
+  };
+
+
+  await findUser.destroy();
+
+  return {data: "User deleted"};
+}
